@@ -7,5 +7,5 @@ export const Colors={
     primary700:"rgb(205, 5, 55)",
     primary800:"rgb(160, 5, 44)",
     accent500:"rgb(255, 225, 1)",
-    gray700:"rgb(100, 96, 97)",
+    gray700:"rgb(67, 65, 65)",
 }
