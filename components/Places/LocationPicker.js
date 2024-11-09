@@ -5,8 +5,9 @@ import { Colors } from '../../constants/colors'
 import { getCurrentPositionAsync, PermissionStatus, useForegroundPermissions } from 'expo-location'
 import MapView, { Marker, UrlTile } from 'react-native-maps'
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native'
+import { getAddress } from '../../util/location'
 
-const LocationPicker = () => {
+const LocationPicker = ({onPickLocation}) => {
 
     const navigation = useNavigation()
     const route=useRoute()
@@ -26,6 +27,18 @@ const LocationPicker = () => {
 
         }
     },[route, isFocused])
+
+    useEffect(()=>{
+        async function handleLocation(){
+            if(pickedLocation)
+            {
+                const address = await getAddress(pickedLocation.lat, pickedLocation.lng)
+                onPickLocation({...pickedLocation, address: address || "Address Not Found"})
+            }
+        }
+
+        handleLocation();
+    },[pickedLocation, onPickLocation])
 
     const verifyPermissions =async()=>{
         if(locationPermissionInformation.status===PermissionStatus.UNDETERMINED)

@@ -5,7 +5,7 @@ import { Colors } from '../../constants/colors'
 import OutlinedButton from '../UI/OutlinedButton'
 
 
-const ImagePicker = () => {
+const ImagePicker = ({onTakeImage}) => {
 
     const[pickedImage, setPickedImage]=useState()
 
@@ -39,12 +39,12 @@ const ImagePicker = () => {
         })
         // console.log(image.assets[0].uri)
         setPickedImage(image.assets[0].uri)
+        onTakeImage(image.assets[0].uri)
     }
 
     let imagePreview = <Text>No image taken yet</Text>
     if(pickedImage)
     {
-        console.log(pickedImage)
         imagePreview=<Image style={styles.image} source={{uri:pickedImage}} />
     }
 
