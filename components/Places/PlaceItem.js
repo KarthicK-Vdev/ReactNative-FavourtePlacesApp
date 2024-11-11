@@ -3,10 +3,10 @@ import React from 'react'
 import { Colors } from '../../constants/colors'
 
 const PlaceItem = ({place, onSelect}) => {
-  console.log(place.imageUrl)
+  
   return (
     <Pressable style={({pressed})=>[styles.item, pressed&& styles.pressed]} 
-    onPress={onSelect}>
+    onPress={onSelect.bind(this, place.id)}>
         <Image style={styles.image} 
         source={{uri: place.imageUrl}} />
         <View style={styles.info}>
@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
       flex:1,
       borderBottomLeftRadius:4,
       borderTopLeftRadius:4,
-      height:100,
-      width:100,
+      height:"100%",
+      width:"100%",
     },
     info:{
       flex:2,
