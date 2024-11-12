@@ -7,7 +7,10 @@ import { fetchPlaceDetails } from '../util/database'
 const PlaceDetails = ({route, navigation}) => {
     const [fetchedPlace, setFetchedPlace]=useState()
     const showMapHandler=()=>{
-
+        navigation.navigate('Map',{
+            initialLat: fetchedPlace.location.lat,
+            initialLng: fetchedPlace.location.lng
+        })
     }
     const selectedPlaceId=route.params.placeId
     useEffect(()=>{
